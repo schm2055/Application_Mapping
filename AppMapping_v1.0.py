@@ -33,7 +33,8 @@ CREATE TABLE IF NOT EXISTS Service_Instances(
 	First_Detected TEXT,
 	Last_Updated TEXT,
 	Application_Services TEXT,
-	Name TEXT
+	Name TEXT,
+	Event TEXT
 );
 ''')
 
@@ -127,7 +128,7 @@ for service in service_list:
 print 'Services Associated Successfully!'
 
 #Add Additional Services Names for more efficient import into Device42
-cur_db.execute('''SELECT Service FROM Service_Instances''')
+cur_db.execute('''SELECT DISTINCT Service FROM Service_Instances''')
 service_list = [record[0] for record in cur_db.fetchall()]
 
 for service in service_list:
